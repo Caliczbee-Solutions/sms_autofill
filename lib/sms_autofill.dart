@@ -52,7 +52,7 @@ class PinFieldAutoFill extends StatefulWidget {
   final String? currentCode;
   final Function(String)? onCodeSubmitted;
   final Function(String?)? onCodeChanged;
-  final PinDecoration decoration;
+  final PinDecoration? decoration;
   final FocusNode? focusNode;
   final Cursor? cursor;
   final TextInputType keyboardType;
@@ -70,8 +70,7 @@ class PinFieldAutoFill extends StatefulWidget {
       this.inputFormatters,
       this.enableInteractiveSelection = true,
       this.controller,
-      this.decoration = const UnderlineDecoration(
-          colorBuilder: FixedColorBuilder(Colors.black), textStyle: TextStyle(color: Colors.black)),
+      this.decoration,
       this.onCodeSubmitted,
       this.onCodeChanged,
       this.currentCode,
@@ -94,7 +93,8 @@ class _PinFieldAutoFillState extends State<PinFieldAutoFill> with CodeAutoFill {
   Widget build(BuildContext context) {
     return PinInputTextField(
       pinLength: widget.codeLength,
-      decoration: widget.decoration,
+      decoration: widget.decoration ?? UnderlineDecoration(
+          colorBuilder: FixedColorBuilder(Colors.black), textStyle: TextStyle(color: Colors.black)),
       focusNode: widget.focusNode,
       enableInteractiveSelection: widget.enableInteractiveSelection,
       autocorrect: false,
